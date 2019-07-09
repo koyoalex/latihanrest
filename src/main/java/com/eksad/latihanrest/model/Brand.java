@@ -1,5 +1,7 @@
 package com.eksad.latihanrest.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,6 +34,8 @@ public class Brand extends BaseEntity {
 	
 	@Column (name="product_type")
 	private String productType;
+	
+
 	
 	
 	

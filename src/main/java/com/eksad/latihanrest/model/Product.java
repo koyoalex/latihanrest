@@ -25,7 +25,7 @@ import lombok.Data;
 	@Entity
 	@Table(name="product")
 	@Inheritance(strategy = InheritanceType.JOINED)
-	@DiscriminatorColumn(name= "type")
+//	@DiscriminatorColumn(name= "type")
 	
 	public class Product
 	{
@@ -55,6 +55,9 @@ import lombok.Data;
 		
 		@Transient //gadibaca dari database
 		private Long brandId ;
+		
+		
+		
 		
 		
 		
