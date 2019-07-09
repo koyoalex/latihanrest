@@ -71,6 +71,15 @@ public class ProductController {
 		
 	}
 	
+	@RequestMapping("getByName/{name}")
+	public List<Product> getByName(@PathVariable String name) {
+		List<Product> result = new ArrayList<>();
+		productDao.findByName(name).forEach(result::add);
+		return result;
+		
+		
+	}
+	
 }
 
 		

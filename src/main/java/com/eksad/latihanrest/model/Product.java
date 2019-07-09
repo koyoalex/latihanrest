@@ -56,6 +56,7 @@ import lombok.Data;
 		@Transient //gadibaca dari database
 		private Long brandId ;
 		
+	
 		
 		
 		
