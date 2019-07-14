@@ -16,8 +16,12 @@ import com.eksad.latihanrest.dao.ProductDao;
 import com.eksad.latihanrest.model.Brand;
 import com.eksad.latihanrest.model.Product;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
-@RequestMapping("product")
+@RequestMapping(value= "/api/v1")
+@Api(tags = "Product")
 public class ProductController {
 
 	@Autowired
@@ -25,14 +29,23 @@ public class ProductController {
 
 	@Autowired
 	BrandDao brandDao;
-
+	
+	@ApiOperation(
+			value = "API to retrieve Product's data by Brand ID",
+			notes = "Return data with JSON format",
+			tags = "Get Data API"
+			)
 	@RequestMapping("getByBrandId/{brandId}")
 	public List<Product> getByBrandId(@PathVariable Long brandId) {
 		List<Product> result = new ArrayList<Product>();
 		productDao.findByBrandId(brandId).forEach(result::add);
 		return result;
 	}
-
+	@ApiOperation(
+			value = "Saving the new Product's Data",
+			notes = "Saving the data to database",
+			tags = "Data Manipulation API"
+			)
 	@RequestMapping(value = "save", method = RequestMethod.POST)
 	public Product save(@RequestBody Product product) {
 		Brand brand = brandDao.findById(product.getBrandId()).orElse(null);
@@ -45,6 +58,11 @@ public class ProductController {
 		// update delete cari berdasarkan nama
 
 	}
+	@ApiOperation(
+			value = "Update Products data",
+			notes = "Update Products data to database",
+			tags = "Data Manipulation API"
+			)
 	@RequestMapping(value = "update/{id}", method = RequestMethod.PUT)
 	public Product update(@RequestBody Product product, @PathVariable Long id) {
 		Product productSelected = productDao.findById(id).orElse(null) ;
@@ -63,6 +81,11 @@ public class ProductController {
 
 
 	}
+	@ApiOperation(
+			value = "Delete Product's Data",
+			notes = "Delete Product's data from database",
+			tags = "Data Manipulation API"
+			)
 	@RequestMapping(value="delete/{id}", method = RequestMethod.DELETE)
 	public HashMap<String, Object> delete (@PathVariable Long id) {
 		HashMap<String, Object> result = new HashMap<String, Object>();
@@ -70,7 +93,11 @@ public class ProductController {
 		return result;
 		
 	}
-	
+	@ApiOperation(
+			value = "API to retrieve Product's data by Product's name",
+			notes = "Return data with JSON format",
+			tags = "Get Data API"
+			)
 	@RequestMapping("getByName/{name}")
 	public List<Product> getByName(@PathVariable String name) {
 		List<Product> result = new ArrayList<>();
